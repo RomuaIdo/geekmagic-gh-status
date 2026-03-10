@@ -94,7 +94,7 @@ if avatar_url:
     avatar_response = requests.get(avatar_url)
     avatar = Image.open(io.BytesIO(avatar_response.content))
 
-    avatar = avatar.resize((128, 128))
+    avatar = avatar.resize((64, 64))
     avatar = avatar.convert("RGB")
 
     with open("../avatar.bin", "wb") as f:
