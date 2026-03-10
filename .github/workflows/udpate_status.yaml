@@ -19,7 +19,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependecies
-        run: pip install requests
+        run: pip install requests Pillow
 
       - name: Execute python script
         env:
