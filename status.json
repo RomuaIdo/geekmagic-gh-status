@@ -2,15 +2,15 @@
   "user": "RomuaIdo",
   "followers": 3,
   "stars_num": 1,
-  "projects_num": 7,
+  "projects_num": 8,
   "forks_num": 10,
   "issues_open": 0,
-  "size_mb": 42.53,
+  "size_mb": 42.54,
   "main_languages": {
     "top1": "C++",
     "top2": "C",
     "top3": "Python"
   },
   "main_project": "brasilore",
-  "last_project": "memory"
+  "last_project": "geekmagic-gh-status"
 }

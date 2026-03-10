@@ -2,6 +2,9 @@ import requests
 import json
 import os
 from collections import Counter
+from PIL import Image
+import io
+
 
 TOKEN = os.getenv("GH_TOKEN")
 USER = "RomuaIdo"
@@ -82,6 +85,28 @@ gh_data = {
     "main_project": main_project,
     "last_project": last_project
 }
+
+
+avatar_url = user_data.get("avatar_url")
+
+if avatar_url:
+    print("Downloading avatar...")
+    avatar_response = requests.get(avatar_url)
+    avatar = Image.open(io.BytesIO(avatar_response.content))
+
+    avatar = avatar.resize((64, 64))
+    avatar = avatar.convert("RGB")
+
+    with open("../avatar.bin", "wb") as f:
+        for y in range(avatar.height):
+            for x in range(avatar.width):
+                r, g, b = avatar.getpixel((x, y))
+                
+                rgb365 = ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3)
+                f.write(rgb365.to_bytes(2, byteorder='big'))
+                
+    print("Avatar downloaded and converted successfully!")
+
 
 with open("../status.json", "w", encoding="utf-8") as file:
     json.dump(gh_data, file, ensure_ascii=False, indent=2)
