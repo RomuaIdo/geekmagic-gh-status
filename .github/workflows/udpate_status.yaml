@@ -24,7 +24,7 @@ jobs:
       - name: Execute python script
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: python src/script.py 
+        run: python src/fetch_github_status.py 
 
       - name: Commit and Push of status.json
         run: |
